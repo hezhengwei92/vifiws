@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="net.eoutech.vifi.ws.dao.TbAgentDao" >
+    <resultMap id="BaseResultMap" type="net.eoutech.vifi.ws.entity.TbAgent" >
+        <id column="uk_key_id" property="ukKeyId" jdbcType="INTEGER" />
+        <result column="idx_agent_id" property="idxAgentId" jdbcType="VARCHAR" />
+        <result column="uk_agent_account" property="ukAgentAccount" jdbcType="VARCHAR" />
+        <result column="agent_password" property="agentPassword" jdbcType="VARCHAR" />
+        <result column="open_id" property="openId" jdbcType="VARCHAR" />
+        <result column="is_login" property="isLogin" jdbcType="INTEGER" />
+        <result column="agent_authority" property="agentAuthority" jdbcType="INTEGER" />
+        <result column="agent_avatar" property="agentAvatar" jdbcType="VARCHAR" />
+        <result column="agent_nickname" property="agentNickname" jdbcType="VARCHAR" />
+        <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
+        <result column="modify_by" property="modifyBy" jdbcType="VARCHAR" />
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+        <result column="create_by" property="createBy" jdbcType="VARCHAR" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+        uk_key_id, idx_agent_id, uk_agent_account, agent_password,open_id, is_login, agent_authority, agent_avatar,
+        agent_nickname, modify_time, modify_by, create_time, create_by
+    </sql>
+
+    <select id="selectAgentByOpenId" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List"/>
+        from TbAgent WHERE idx_agent_id = #{idxAgentId,jdbcType=VARCHAR}
+    </select>
+
+
+
+    <insert id="insertAgent" parameterType="net.eoutech.vifi.ws.entity.TbAgent">
+        insert into TbAgent
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="ukKeyId != null">
+                uk_key_id,
+            </if>
+            <if test="idxAgentId != null">
+                idx_agent_id,
+            </if>
+            <if test="ukAgentAccount != null">
+                uk_agent_account,
+            </if>
+            <if test="agentPassword != null">
+                agent_password,
+            </if>
+            <if test="openId != null">
+                open_id,
+            </if>
+            <if test="isLogin != null">
+                is_login,
+            </if>
+            <if test="agentAuthority != null">
+                agent_authority,
+            </if>
+            <if test="agentAvatar != null">
+                agent_avatar,
+            </if>
+            <if test="agentNickname != null">
+                agent_nickname,
+            </if>
+            <if test="modifyTime != null">
+                modify_time,
+            </if>
+            <if test="modifyBy != null">
+                modify_by,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="createBy != null">
+                create_by,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="ukKeyId != null">
+                #{ukKeyId,jdbcType=INTEGER},
+            </if>
+            <if test="idxAgentId != null">
+                #{idxAgentId,jdbcType=VARCHAR},
+            </if>
+            <if test="ukAgentAccount != null">
+                #{ukAgentAccount,jdbcType=VARCHAR},
+            </if>
+            <if test="agentPassword != null">
+                #{agentPassword,jdbcType=VARCHAR},
+            </if>
+            <if test="openId != null">
+                #{openId,jdbcType=VARCHAR},
+            </if>
+            <if test="isLogin != null">
+                #{isLogin,jdbcType=INTEGER},
+            </if>
+            <if test="agentAuthority != null">
+                #{agentAuthority,jdbcType=INTEGER},
+            </if>
+            <if test="agentAvatar != null">
+                #{agentAvatar,jdbcType=VARCHAR},
+            </if>
+            <if test="agentNickname != null">
+                #{agentNickname,jdbcType=VARCHAR},
+            </if>
+            <if test="modifyTime != null">
+                NOW(),
+            </if>
+            <if test="modifyBy != null">
+                #{modifyBy,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                NOW(),
+            </if>
+            <if test="createBy != null">
+                #{createBy,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+
+
+
+</mapper>

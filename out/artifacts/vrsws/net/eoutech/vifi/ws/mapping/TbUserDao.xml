@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="net.eoutech.vifi.ws.dao.TbUserDao" >
+    <resultMap id="BaseResultMap" type="net.eoutech.vifi.ws.entity.TbUser" >
+        <id column="uk_key_id" property="ukKeyId" jdbcType="INTEGER" />
+        <result column="uk_user_id" property="ukUserId" jdbcType="VARCHAR" />
+        <result column="idx_user_phone" property="idxUserPhone" jdbcType="VARCHAR" />
+        <result column="third_user_id" property="thirdUserId" jdbcType="VARCHAR" />
+        <result column="third_open_id" property="thirdOpenId" jdbcType="VARCHAR" />
+        <result column="user_avatar" property="userAvatar" jdbcType="VARCHAR" />
+        <result column="user_nickname" property="userNickname" jdbcType="VARCHAR" />
+        <result column="user_level_id" property="userLevelId" jdbcType="INTEGER" />
+        <result column="user_level_name" property="userLevelName" jdbcType="VARCHAR" />
+        <result column="user_level_point" property="userLevelPoint" jdbcType="INTEGER" />
+        <result column="user_type" property="userType" jdbcType="VARCHAR" />
+        <result column="user_status" property="userStatus" jdbcType="INTEGER" />
+        <result column="user_currency" property="userCurrency" jdbcType="INTEGER" />
+        <result column="online_status" property="onlineStatus" jdbcType="INTEGER" />
+        <result column="online_time" property="onlineTime" jdbcType="TIMESTAMP" />
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+        uk_key_id, uk_user_id, idx_user_phone, third_user_id, third_open_id, user_avatar, user_nickname,
+        user_level_id, user_level_name, user_level_point, user_type,user_status, user_currency, online_status, online_time, create_time
+    </sql>
+
+
+    <select id="selectUserByUserId" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select <include refid="Base_Column_List"/>
+        from TbUser WHERE uk_user_id = #{0,jdbcType=VARCHAR} limit 1
+    </select>
+
+    <select id="selectUidByThirdUserId" resultType="java.lang.String" parameterType="java.lang.String">
+        select uk_user_id
+        from TbUser WHERE third_user_id = #{0,jdbcType=VARCHAR} limit 1
+    </select>
+
+    <select id="selctUidByThirdOpenId" resultType="java.lang.String" parameterType="java.lang.String">
+        select uk_user_id
+        from TbUser WHERE third_open_id = #{0,jdbcType=VARCHAR} limit 1
+    </select>
+
+    <insert id="insertUser" parameterType="net.eoutech.vifi.ws.entity.TbUser">
+        insert into TbUser
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="ukUserId != null">
+                uk_user_id,
+            </if>
+            <if test="idxUserPhone != null">
+                idx_user_phone,
+            </if>
+            <if test="thirdUserId != null">
+                third_user_id,
+            </if>
+            <if test="thirdOpenId != null">
+                third_open_id,
+            </if>
+            <if test="userAvatar != null">
+                user_avatar,
+            </if>
+            <if test="userNickname != null">
+                user_nickname,
+            </if>
+            <if test="userLevelId != null">
+                user_level_id,
+            </if>
+            <if test="userLevelName != null">
+                user_level_name,
+            </if>
+            <if test="userLevelPoint != null">
+                user_level_point,
+            </if>
+            <if test="userType != null">
+                user_type,
+            </if>
+            <if test="userStatus != null">
+                user_status,
+            </if>
+            <if test="userCurrency != null">
+                user_currency,
+            </if>
+            <if test="onlineStatus != null">
+                online_status,
+            </if>
+            <if test="onlineTime != null">
+                online_time,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="ukUserId != null">
+                #{ukUserId,jdbcType=VARCHAR},
+            </if>
+            <if test="idxUserPhone != null">
+                #{idxUserPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="thirdUserId != null">
+                #{thirdUserId,jdbcType=VARCHAR},
+            </if>
+            <if test="thirdOpenId != null">
+                #{thirdOpenId,jdbcType=VARCHAR},
+            </if>
+            <if test="userAvatar != null">
+                #{userAvatar,jdbcType=VARCHAR},
+            </if>
+            <if test="userNickname != null">
+                #{userNickname,jdbcType=VARCHAR},
+            </if>
+            <if test="userLevelId != null">
+                #{userLevelId,jdbcType=INTEGER},
+            </if>
+            <if test="userLevelName != null">
+                #{userLevelName,jdbcType=VARCHAR},
+            </if>
+            <if test="userLevelPoint != null">
+                #{userLevelPoint,jdbcType=INTEGER},
+            </if>
+            <if test="userType != null">
+                #{userType,jdbcType=VARCHAR},
+            </if>
+            <if test="userStatus != null">
+                #{userStatus,jdbcType=INTEGER},
+            </if>
+            <if test="userCurrency != null">
+                #{userCurrency,jdbcType=INTEGER},
+            </if>
+            <if test="onlineStatus != null">
+                #{onlineStatus,jdbcType=INTEGER},
+            </if>
+            <if test="onlineTime != null">
+                #{onlineTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createTime != null">
+                now(),
+            </if>
+        </trim>
+    </insert>
+
+
+</mapper>

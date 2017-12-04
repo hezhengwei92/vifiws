@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="net.eoutech.vifi.ws.dao.TbAdminDao" >
+    <resultMap id="BaseResultMap" type="net.eoutech.vifi.ws.entity.TbAdmin" >
+        <id column="uk_key_id" property="ukKeyId" jdbcType="INTEGER" />
+        <result column="uk_admin_account" property="ukAdminAccount" jdbcType="VARCHAR" />
+        <result column="admin_password" property="adminPassword" jdbcType="VARCHAR" />
+        <result column="is_login" property="isLogin" jdbcType="INTEGER" />
+        <result column="admin_authority" property="adminAuthority" jdbcType="INTEGER" />
+        <result column="admin_avatar" property="adminAvatar" jdbcType="VARCHAR" />
+        <result column="admin_nickname" property="adminNickname" jdbcType="VARCHAR" />
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+        <result column="create_by" property="createBy" jdbcType="VARCHAR" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+        uk_key_id, uk_admin_account, admin_password, is_login, admin_authority, admin_avatar, admin_nickname,create_time,create_by
+    </sql>
+
+    <select id="selectFlowRcd" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select <include refid="Base_Column_List"/>
+        from TbAdmin WHERE uk_key_id = 0
+    </select>
+
+</mapper>

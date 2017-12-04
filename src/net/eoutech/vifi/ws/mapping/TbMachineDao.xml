@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="net.eoutech.vifi.ws.dao.TbMachineDao" >
+    <resultMap id="BaseResultMap" type="net.eoutech.vifi.ws.entity.TbMachine" >
+        <id column="uk_key_id" property="ukKeyId" jdbcType="INTEGER" />
+        <result column="uk_machine_id" property="ukMachineId" jdbcType="VARCHAR" />
+        <result column="machine_name" property="machineName" jdbcType="VARCHAR" />
+        <result column="machine_type" property="machineType" jdbcType="VARCHAR" />
+        <result column="machine_avatar" property="machineAvatar" jdbcType="INTEGER" />
+        <result column="machine_agent_id" property="machineAgentId" jdbcType="VARCHAR" />
+        <result column="machine_manufacturer" property="machineManufacturer" jdbcType="VARCHAR" />
+        <result column="machine_position" property="machinePosition" jdbcType="VARCHAR" />
+        <result column="machine_position_code" property="machinePositionCode" jdbcType="VARCHAR" />
+        <result column="machine_status" property="machineStatus" jdbcType="INTEGER" />
+        <result column="exchange_ratio" property="exchangeRatio" jdbcType="DOUBLE" />
+        <result column="machine_coin" property="machineCoin" jdbcType="INTEGER" />
+        <result column="machine_pulse" property="machinePulse" jdbcType="INTEGER" />
+        <result column="machine_interval" property="machineInterval" jdbcType="INTEGER" />
+        <result column="machine_number" property="machineNumber" jdbcType="INTEGER" />
+        <result column="machine_longitude" property="machineLongitude" jdbcType="DOUBLE" />
+        <result column="machine_latitude" property="machineLatitude" jdbcType="DOUBLE" />
+        <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
+        <result column="modify_by" property="modifyBy" jdbcType="VARCHAR" />
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+        <result column="create_by" property="createBy" jdbcType="VARCHAR" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+        uk_key_id, uk_machine_id, machine_name, machine_type, machine_avatar, machine_agent_id, machine_manufacturer,machine_position,machine_position_code,
+         machine_status, exchange_ratio,machine_coin,machine_pulse,machine_interval,machine_number,machine_longitude, machine_latitude, modify_time, modify_by, create_time, create_by
+    </sql>
+
+    <select id="selectMachineByVid" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select <include refid="Base_Column_List"/>
+        from tbMachine WHERE uk_machine_id = #{0,jdbcType=VARCHAR} limit 1
+    </select>
+
+    <select id="selectMachineByVidAndUid" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select <include refid="Base_Column_List"/>
+        from tbMachine WHERE uk_machine_id = #{0,jdbcType=VARCHAR} AND machine_agent_id = #{1,jdbcType=VARCHAR} limit 1
+    </select>
+
+    <select id="selectMachineByPositionCode" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select <include refid="Base_Column_List"/>
+        from tbMachine WHERE machine_position_code = #{0,jdbcType=VARCHAR}
+    </select>
+
+
+    <select id="selectAll" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List"/>
+        from tbMachine
+    </select>
+
+    <update id="updateMachine" parameterType="net.eoutech.vifi.ws.entity.TbMachine" >
+        update TbMachine
+        <set >
+            <if test="ukKeyId != null" >
+                uk_key_id = #{ukKeyId,jdbcType=INTEGER},
+            </if>
+            <if test="ukMachineId != null" >
+                uk_machine_id = #{ukMachineId,jdbcType=VARCHAR},
+            </if>
+            <if test="machineName != null" >
+                machine_name = #{machineName,jdbcType=VARCHAR},
+            </if>
+            <if test="machineType != null" >
+                machine_type = #{machineType,jdbcType=VARCHAR},
+            </if>
+            <if test="machineAvatar != null" >
+                machine_avatar = #{machineAvatar,jdbcType=VARCHAR},
+            </if>
+            <if test="machineAgentId != null" >
+                machine_agent_id = #{machineAgentId,jdbcType=VARCHAR},
+            </if>
+            <if test="machineManufacturer != null" >
+                machine_manufacturer = #{machineManufacturer,jdbcType=VARCHAR},
+            </if>
+            <if test="machinePosition != null" >
+                machine_position = #{machinePosition,jdbcType=VARCHAR},
+            </if>
+            <if test="machinePositionCode != null" >
+                machine_position_code = #{machinePositionCode,jdbcType=VARCHAR},
+            </if>
+            <if test="machineStatus != null" >
+                machine_status = #{machineStatus,jdbcType=DOUBLE},
+            </if>
+            <if test="exchangeRatio != null" >
+                exchange_ratio = #{exchangeRatio,jdbcType=INTEGER},
+            </if>
+            <if test="machineCoin != null" >
+                machine_coin = #{machineCoin,jdbcType=INTEGER},
+            </if>
+            <if test="machinePulse != null" >
+                machine_pulse = #{machinePulse,jdbcType=INTEGER},
+            </if>
+            <if test="machineInterval != null" >
+                machine_interval = #{machineInterval,jdbcType=INTEGER},
+            </if>
+            <if test="machineNumber != null" >
+                machine_number = #{machineNumber,jdbcType=INTEGER},
+            </if>
+            <if test="machineLongitude != null" >
+                machine_longitude = #{machineLongitude,jdbcType=DOUBLE},
+            </if>
+            <if test="machineLatitude != null" >
+                machine_latitude = #{machineLatitude,jdbcType=DOUBLE},
+            </if>
+            <if test="modifyTime != null" >
+                modify_time = now(),
+            </if>
+            <if test="modifyBy != null" >
+                modify_by = #{modifyBy,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createTime != null" >
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createBy != null" >
+                create_by = #{createBy,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where uk_machine_id = #{ukMachineId,jdbcType=VARCHAR}
+    </update>
+
+</mapper>

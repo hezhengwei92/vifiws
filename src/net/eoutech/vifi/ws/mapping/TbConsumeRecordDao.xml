@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="net.eoutech.vifi.ws.dao.TbConsumeRecordDao">
+    <resultMap id="BaseResultMap" type="net.eoutech.vifi.ws.entity.TbConsumeRecord">
+        <id column="uk_key_id" property="ukKeyId" jdbcType="INTEGER"/>
+        <result column="uk_order_id" property="ukOrderId" jdbcType="VARCHAR"/>
+        <result column="idx_user_id" property="idxUserId" jdbcType="VARCHAR"/>
+        <result column="idx_machine_id" property="idxMachineId" jdbcType="VARCHAR"/>
+        <result column="machine_number" property="machineNumber" jdbcType="INTEGER"/>
+        <result column="idx_agent_id" property="idxAgentId" jdbcType="VARCHAR"/>
+        <result column="machine_position" property="machinePosition" jdbcType="VARCHAR"/>
+        <result column="position_id" property="positionId" jdbcType="VARCHAR"/>
+        <result column="user_type" property="userType" jdbcType="VARCHAR"/>
+        <result column="cost_currency" property="costCurrency" jdbcType="INTEGER"/>
+        <result column="cost_status" property="costStatus" jdbcType="INTEGER"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="create_by" property="createBy" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        uk_key_id,uk_order_id, idx_user_id, idx_machine_id, machine_number, idx_agent_id, machine_position, position_id,
+        user_type,cost_currency,cost_Status,create_time, create_by
+    </sql>
+
+    <select id="selectById" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from TbConsumeRecord WHERE idx_user_id = #{0,jdbcType=VARCHAR} ORDER BY create_time DESC limit
+        #{1,jdbcType=INTEGER},#{2,jdbcType=INTEGER}
+    </select>
+
+    <select id="selectRecordByOrderId" resultMap="BaseResultMap"
+            parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from TbConsumeRecord WHERE uk_order_id = #{0,jdbcType=VARCHAR}
+    </select>
+
+    <select id="selectByOrderID" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from TbConsumeRecord WHERE uk_order_id = #{0,jdbcType=VARCHAR} limit 1
+    </select>
+
+    <insert id="insetRecord" parameterType="net.eoutech.vifi.ws.entity.TbConsumeRecord">
+        insert into TbConsumeRecord (idx_user_id,uk_order_id, idx_machine_id,
+        machine_number, idx_agent_id, machine_position,
+        position_id, user_type,cost_currency, cost_status, create_time,create_by
+        )
+        values (#{idxUserId,jdbcType=VARCHAR}, #{ukOrderId,jdbcType=VARCHAR}, #{idxMachineId,jdbcType=VARCHAR},
+        #{machineNumber,jdbcType=INTEGER}, #{idxAgentId,jdbcType=VARCHAR}, #{machinePosition,jdbcType=VARCHAR},
+        #{positionId,jdbcType=VARCHAR}, #{userType,jdbcType=VARCHAR},#{costCurrency,jdbcType=INTEGER}, #{costStatus,jdbcType=INTEGER},
+        #{createTime,jdbcType=TIMESTAMP}, #{createBy,jdbcType=VARCHAR}
+        )
+    </insert>
+
+</mapper>

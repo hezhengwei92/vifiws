@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="net.eoutech.vifi.ws.dao.TbPackageDao" >
+    <resultMap id="BaseResultMap" type="net.eoutech.vifi.ws.entity.TbPackage" >
+        <id column="uk_key_id" property="ukKeyId" jdbcType="INTEGER" />
+        <result column="uk_package_id" property="ukPackageId" jdbcType="VARCHAR" />
+        <result column="idx_agent_id" property="idxAgentId" jdbcType="VARCHAR" />
+        <result column="package_description" property="packageDescription" jdbcType="VARCHAR" />
+        <result column="package_price" property="packagePrice" jdbcType="INTEGER" />
+        <result column="package_currency" property="packageCurrency" jdbcType="INTEGER" />
+        <result column="package_status" property="packageStatus" jdbcType="INTEGER" />
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+        <result column="create_by" property="createBy" jdbcType="VARCHAR" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+        uk_key_id, uk_package_id, idx_agent_id, package_description, package_price, package_currency, package_status,create_time,create_by
+    </sql>
+
+    <select id="selectAll" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List"/>
+        from TbPackage
+    </select>
+
+</mapper>

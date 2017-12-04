@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="net.eoutech.vifi.ws.dao.TbWithdrawalsDao" >
+    <resultMap id="BaseResultMap" type="net.eoutech.vifi.ws.entity.TbWithdrawals" >
+        <id column="uk_key_id" property="ukKeyId" jdbcType="INTEGER" />
+        <result column="idx_agent_id" property="idxAgentId" jdbcType="VARCHAR" />
+        <result column="idx_withdrawals_account" property="idxWithdrawalsAccount" jdbcType="VARCHAR" />
+        <result column="uk_order_id" property="ukOrderId" jdbcType="VARCHAR" />
+        <result column="uk_transaction_id" property="ukTransactionId" jdbcType="VARCHAR" />
+        <result column="withdrawals_money" property="withdrawalsMoney" jdbcType="INTEGER" />
+        <result column="withdrawals_get_money" property="withdrawalsGetMoney" jdbcType="INTEGER" />
+        <result column="withdrawals_poundage" property="withdrawalsPoundage" jdbcType="INTEGER" />
+        <result column="withdrawals_rate" property="withdrawalsRate" jdbcType="DOUBLE" />
+        <result column="withdrawals_type" property="withdrawalsType" jdbcType="VARCHAR" />
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+        <result column="create_by" property="createBy" jdbcType="VARCHAR" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+        uk_key_id, idx_agent_id, idx_withdrawals_account, uk_order_id,uk_transaction_id,withdrawals_money, withdrawals_get_money, withdrawals_poundage, withdrawals_rate,
+         create_time, create_by
+    </sql>
+
+    <select id="selectFlowRcd" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List"/>
+        from TbWithdrawals WHERE uk_key_id = 0
+    </select>
+
+</mapper>

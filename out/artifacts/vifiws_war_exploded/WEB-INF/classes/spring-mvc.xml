@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:p="http://www.springframework.org/schema/p" xmlns:task="http://www.springframework.org/schema/task"
+       xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd">
+
+    <bean id="multipartResolver"
+          class="org.springframework.web.multipart.commons.CommonsMultipartResolver" p:defaultEncoding="utf-8"/>
+
+    <bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
+        <property name="defaultLocale" value="zh_CN"></property>
+    </bean>
+
+    <bean id="className" class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping">
+        <property name="interceptors">
+            <list>
+                <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor"/>
+            </list>
+        </property>
+    </bean>
+
+
+    <task:annotation-driven/>
+    <bean id="timer" class="net.eoutech.utils.TokenTimerUtils" />
+    <task:scheduled-tasks>
+        <!--这里表示的是每隔五秒执行一次-->
+        <task:scheduled ref="timer" method="token" cron="0 */30 */1 * * ?"/>
+    </task:scheduled-tasks>
+
+    <mvc:annotation-driven>
+        <mvc:message-converters>
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                <property name="supportedMediaTypes">
+                    <list>
+                        <value>application/json;charset=UTF-8</value>
+                    </list>
+                </property>
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+
+    <!-- 使用annotation 自动注册bean, 并保证@Required、@Autowired的属性被注入 -->
+    <!-- <context:component-scan base-package="com.cosmact.cosws"/> -->
+
+    <context:annotation-config/>
+    <context:component-scan base-package="net.eoutech.vifi">
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service"/>
+    </context:component-scan>
+    <mvc:annotation-driven/>
+    <mvc:default-servlet-handler/>
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/detail/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+    <mvc:resources mapping="static/**" location="static/"/>
+    <bean id="jobTask" class="net.eoutech.utils.TimeoutScheduler" init-method="init"/>
+    <!--<bean id="flume" class="net.eoutech.utils.FlumeRpcClientUtils" init-method="init"/>-->
+</beans>

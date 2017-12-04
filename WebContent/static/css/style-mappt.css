@@ -1,0 +1,59 @@
+
+
+.head{
+    width: 100%;
+    height: 1rem;
+    background-color: #fff;
+}
+.head-img{
+    float: left;
+    height: 0.8rem;
+    width: 0.8rem;
+    margin-top: 0.1rem;
+    margin-left: 0.5rem;
+    background-color: #0aaafb;
+
+}
+.head-name{
+    font-size: 0.3rem;
+    line-height: 1rem;
+    margin-right: 1rem;
+    float: right;
+
+}
+.head-GK{
+    width: 100%;
+    height: 0.2rem;
+    background-color: #f0eff5;
+}
+
+.bafter-head{
+    width: 100%;
+    height: 1rem;
+    line-height: 1rem;
+    font-size: 0.4rem;
+    text-align: center;
+}
+.body-mid{
+    margin: 2rem auto;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 1.5rem;
+    background-color: #2b8bfc;
+    text-align: center;
+    font-size: 0.5rem;
+    line-height: 3rem;
+    color: #fff;
+}
+.body-CHONGZHI{
+    position: absolute;
+    background-color: #0aaafb;
+    height: 1rem;
+    width: 100%;
+    bottom: 0%;
+    text-align: center;
+    line-height: 1rem;
+    color: #fff;
+    font-size: 0.5rem;
+
+}

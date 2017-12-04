@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="net.eoutech.vifi.ws.dao.TbFeedbackDao" >
+  <resultMap id="BaseResultMap" type="net.eoutech.vifi.ws.entity.TbFeedback" >
+    <id column="uk_key_id" property="ukKeyId" jdbcType="INTEGER" />
+    <result column="idx_user_id" property="idxUserId" jdbcType="VARCHAR" />
+    <result column="backTitle" property="backTitle" jdbcType="VARCHAR" />
+    <result column="backContent" property="backContent" jdbcType="VARCHAR" />
+    <result column="backContact" property="backContact" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="create_by" property="createBy" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    uk_key_id, uk_machine_id, machine_name, machine_type, machine_avatar, machine_agent_id, machine_manufacturer,
+    machine_position, machine_status, machine_longitude, machine_latitude, modify_time, modify_by, create_time, create_by
+  </sql>
+  <insert id="insertFeedback" parameterType="net.eoutech.vifi.ws.entity.TbFeedback">
+    insert into TbFeedback
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="ukKeyId != null">
+        uk_key_id,
+      </if>
+      <if test="idxUserId != null">
+        idx_user_id,
+      </if>
+      <if test="backTitle != null">
+        backTitle,
+      </if>
+      <if test="backContent != null">
+        backContent,
+      </if>
+      <if test="backContact != null">
+        backContact,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="createBy != null">
+        create_by,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="ukKeyId != null">
+        #{ukKeyId,jdbcType=VARCHAR},
+      </if>
+      <if test="idxUserId != null">
+        #{idxUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="backTitle != null">
+        #{backTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="backContent != null">
+        #{backContent,jdbcType=VARCHAR},
+      </if>
+      <if test="backContact != null">
+        #{backContact,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+</mapper>

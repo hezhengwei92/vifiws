@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Suite" parallel="false">
+  <test name="Test">
+  
+  	<!-- public -->
+	<parameter name="uid" value="8613812457896" />
+	<parameter name="pwd" value="12341" />
+	<parameter name="dev" value="Android 4.4" />
+	<parameter name="ver" value="1.0" />
+	<parameter name="ipaddress" value="192.168.1.103" />
+	
+	<!-- logout -->
+	<parameter name="checkPass" value="true" />
+	
+	<!-- updatePass -->
+	<parameter name="npwd" value="12345" />
+	
+	<!-- resetPass -->
+	<parameter name="act" value="1" />
+	
+	<!-- feedback -->
+	<parameter name="title" value="testNG_feedback" />
+	<parameter name="content" value="example : testNG_feedback content" />
+	<parameter name="appType" value="APPPADR" />
+	
+	<!-- register -->
+	<parameter name="ccode" value="86" />
+	<parameter name="smsck" value="1" />
+	<parameter name="lang" value="zh_CN" />
+	<parameter name="deviceInfo" value="Android 4.4" />
+	<parameter name="osInfo" value="HUAWEI P7-L09" />
+	<parameter name="mappVersion" value="1.0" />
+	
+    <classes>
+      <class name="com.vifi.test.ViFi_APP_APIServiceTest">
+      </class>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="net.eoutech.vifi.ws.dao.TbUserRecordDao" >
+    <resultMap id="BaseResultMap" type="net.eoutech.vifi.ws.entity.TbUserRecord" >
+        <id column="uk_key_id" property="ukKeyId" jdbcType="INTEGER" />
+        <result column="uk_order_id" property="ukOrderId" jdbcType="VARCHAR" />
+        <result column="uk_transaction_id" property="ukTransactionId" jdbcType="VARCHAR" />
+        <result column="idx_user_id" property="idxUserId" jdbcType="VARCHAR" />
+        <result column="buy_ip" property="buyIp" jdbcType="VARCHAR" />
+        <result column="buy_type" property="buyType" jdbcType="VARCHAR" />
+        <result column="buy_package_id" property="buyPackageId" jdbcType="VARCHAR" />
+        <result column="buy_package_money" property="buyPackageMoney" jdbcType="INTEGER" />
+        <result column="buy_package_currency" property="buyPackageCurrency" jdbcType="INTEGER" />
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+        <result column="is_pay" property="isPay" jdbcType="INTEGER" />
+
+    </resultMap>
+    <sql id="Base_Column_List" >
+        uk_key_id, uk_order_id, uk_transaction_id, idx_user_id,buy_ip, buy_type, buy_package_id, buy_package_money,buy_package_currency,create_time,is_pay
+    </sql>
+
+    <select id="selectRecordById" resultMap="BaseResultMap" parameterType="net.eoutech.vifi.ws.entity.TbUserRecord">
+        select <include refid="Base_Column_List"/>
+        from TbUserRecord WHERE idx_user_id = #{0,jdbcType=VARCHAR} ORDER BY create_time DESC limit #{1,jdbcType=INTEGER},#{2,jdbcType=INTEGER}
+    </select>
+
+</mapper>
