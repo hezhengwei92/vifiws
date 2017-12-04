@@ -44,7 +44,6 @@
         from tbMachine WHERE machine_position_code = #{0,jdbcType=VARCHAR}
     </select>
 
-
     <select id="selectAll" resultMap="BaseResultMap">
         select <include refid="Base_Column_List"/>
         from tbMachine
@@ -119,5 +118,6 @@
         </set>
         where uk_machine_id = #{ukMachineId,jdbcType=VARCHAR}
     </update>
+
 
 </mapper>
